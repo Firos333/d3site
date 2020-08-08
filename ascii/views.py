@@ -3,22 +3,34 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
-# Create your views here.
-
+from bs4 import BeautifulSoup
+from urllib.request import Request, urlopen
+import re
+import json 
 
 def index(request):
-    context={"tags" : [
-    { 'tag': 'gstreamer_cctv_streaming', 'size': 10 },
-    { 'tag': 'microk8s_with_2_rpis', 'size': 8 },
-    { 'tag': 'docker', 'size': 1 },
-    { 'tag': 'git', 'size': 6 },
-    { 'tag': 'regex', 'size': 3 },
-    { 'tag': 'rest_api', 'size': 9 },
-    { 'tag': 'why_http_2', 'size': 7 },
-    { 'tag': 'graphana', 'size': 5 },
-    { 'tag': 'bigpipe', 'size': 2 },
-    { 'tag': 'telnet', 'size': 4 },
-],}
+    def add_item(item):
+        context["tags"].append(item)
+    req = Request("https://firos333.github.io/")
+    html_page = urlopen(req)
+    soup = BeautifulSoup(html_page, "lxml")
+    links = []
+    for link in soup.findAll('a'):
+        links.append(link.get('href'))
+    links = [link for link in links if link.startswith('#')]
+    x=[link.replace('#','') for link in links]
+    text=[]
+    for link in x:
+        results = soup.find(id= link)
+        text.append(results.text)
+    context={"tags" : [],}
+    for lnk, txt in zip(links, text):
+        item = {}
+        item["text"]= txt
+        item["url"]= 'https://firos333.github.io/'+lnk
+        # item["country"]=..
+        add_item(item)
+    
     return render(request,'index.html',context)
 def home(request):
     return render(request,'home.html')

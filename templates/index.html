@@ -58,23 +58,16 @@
   </div><br>
 </body>
 <script>
-   
-    var words = [{"text":"Gstreamer", "url":"https://firos333.github.io/#_gstreamer_cctv_streaming"},
-             {"text":"MicroK8s with 2 RPis", "url":"https://firos333.github.io/#_microk8s_with_2_rpis"},
-             {"text":"Docker", "url":"https://firos333.github.io/#_docker"},
-             {"text":"Bigpipe", "url":"https://firos333.github.io/#_bigpipe"},
-             {"text":"Grafana", "url":"https://firos333.github.io/#_graphana"},
-             {"text":"Regex", "url":"https://firos333.github.io/#_regex"},
-             {"text":"Telnet", "url":"https://firos333.github.io/#_telnet"},
-             {"text":"REST API", "url":"https://firos333.github.io/#_rest_api"},
-             {"text":"REST", "url":"https://firos333.github.io/#_rest"},
-             {"text":"Git", "url":"https://firos333.github.io/#_git"},
-             {"text":"HTTP2/3", "url":"https://firos333.github.io/#_http23"},
-             {"text":"Openshift", "url":"https://firos333.github.io/#_openshift"}]
+    var string = "{{ tags|escapejs}}";
+    string = string.replace(/'/g, '"');
+    var words = JSON.parse(string);
+    console.log(words.url);
+  
     var width = 1000;
     var height = 430;
     for (var i = 0; i < 3; i++) {
         words[i].size = 10 + Math.random() * 20;
+        console.log(words.url);
         }
     for (var i = 3; i < 7 ; i++) {
         words[i].size = 20 + Math.random() * 30;
