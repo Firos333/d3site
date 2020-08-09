@@ -63,18 +63,9 @@
     var words = JSON.parse(string);
     console.log(words.url);
   
-    var width = 1000;
-    var height = 430;
-    for (var i = 0; i < 3; i++) {
-        words[i].size = 10 + Math.random() * 20;
-        console.log(words.url);
-        }
-    for (var i = 3; i < 7 ; i++) {
-        words[i].size = 20 + Math.random() * 30;
-        }
-    for (var i = 7; i < words.length; i++) {
-        words[i].size = 40 + Math.random() * 40;
-        }
+    var width = 1250;
+    var height = 650;
+ 
     var color = d3.scale.linear()
             .domain([0,1,2,3,4,5,6,10,15,20,100])
             .range(["#ff6600", "#00b300", "#cc00cc", "#0000cc", "#000000", "#cc9900", "#991f00", "#00ff00", "#6b6b47", "#009999", "#990026", "#222"]);
