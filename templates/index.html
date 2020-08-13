@@ -3,6 +3,11 @@
 <html>
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="{% static 'd3.layout.cloud.js'%}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css">
+
+
 <head>
     <title>Miltek notes</title>
 </head>
@@ -50,6 +55,7 @@
     color: white;
   }
 </style>
+
 <body>
    <!-- Image and text -->
    <div class="topnav">
@@ -100,10 +106,28 @@
                 .text(function(d) { return d.text; })
                 .on("click", function (d, i){window.open(d.url, "_blank");
                 });
+
     }
 </script>
-
+<script>
+    $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+}); 
+</script>
 </div>
+
+
+  <hr/>
+  <centre>
+    <select id="selecttopic" class="js-example-basic-single" onChange="window.location.href=this.value"> 
+      <option selected disabled="true">--Select Topic--</option>
+      {% for x in tags %}
+
+      <option value='{{x.url}}'> {{x.text}} </a> </option>
+      
+      {% endfor %}
+    </select><br> 
+    </centre>
 
 
 </html>

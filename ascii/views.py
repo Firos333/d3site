@@ -9,6 +9,7 @@ import re
 import json 
 import os
 
+
 def index(request):
     def add_item(item):
         context["tags"].append(item)
@@ -64,14 +65,14 @@ def index(request):
     cont_reduced= [(x / factor) for x in size]
     Font_size = [( x*1.5 if x<20 else x if 20<x<50 else x*0.65 if 50<x<200 else x*0.4) for x in cont_reduced]
     context={"tags" : [],}
-
+  
     for lnk, txt, siz in zip(Headlink, Heading,Font_size):
         item = {}
         item["text"]= txt
         item["url"]= lnk
         item["size"]= int(siz)
         add_item(item)
-    
+        
     return render(request,'index.html',context)
 def home(request):
     return render(request,'home.html')
