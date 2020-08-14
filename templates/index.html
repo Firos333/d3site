@@ -63,14 +63,25 @@
     <a class="active" href="https://www.miltek.co.in/">Miltek Technologies Notes</a>
   </div><br>
 </body>
+<div style="float:right">
+  <select id="selecttopic" class="js-example-basic-single" onChange="window.location.href=this.value"> 
+    <option selected disabled="true">--Select Topic--</option>
+    {% for x in tags %}
+
+    <option value='{{x.url}}'> {{x.text}} </a> </option>
+    
+    {% endfor %}
+  </select>
+</div>
+<center>
 <script>
     var string = "{{ tags|escapejs}}";
     string = string.replace(/'/g, '"');
     var words = JSON.parse(string);
     console.log(words.url);
   
-    var width = 1250;
-    var height = 650;
+    var width = 1000;
+    var height = 700;
  
     var color = d3.scale.linear()
             .domain([0,1,2,3,4,5,6,10,15,20,100])
@@ -78,7 +89,7 @@
 
     d3.layout.cloud().size([width, height])
         .words(words)
-        .padding(6)
+        .padding(5)
         .rotate(function() { return ~~(Math.random() * 2) * 90; })
         .font("Impact")
         .fontSize(function(d) { return d.size; })
@@ -109,6 +120,7 @@
 
     }
 </script>
+</center>
 <script>
     $(document).ready(function() {
     $('.js-example-basic-single').select2();
@@ -118,16 +130,7 @@
 
 
   <hr/>
-  <centre>
-    <select id="selecttopic" class="js-example-basic-single" onChange="window.location.href=this.value"> 
-      <option selected disabled="true">--Select Topic--</option>
-      {% for x in tags %}
-
-      <option value='{{x.url}}'> {{x.text}} </a> </option>
-      
-      {% endfor %}
-    </select><br> 
-    </centre>
+ 
 
 
 </html>
