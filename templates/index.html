@@ -29,6 +29,7 @@
     /* Add a black background color to the top navigation */
   .topnav {
     background-color: #333;
+    opacity: .9;
     overflow: hidden;
    
   }
@@ -41,7 +42,7 @@
     padding: 26px 14px;
     text-decoration: none;
     font-family:'miriam fixed';
-    font-size: 26px;
+    font-size: 30px;
 
   } 
   
@@ -61,11 +62,11 @@
 <body>
    <!-- Image and text -->
    <div class="topnav">
-    <img src="{% static 'logo.png' %}" alt="miltek" width="80" height="80" align="left">
+    <img src="{% static 'logo.png' %}" alt="miltek" width="70" height="75" align="left">
     <a class="active" href="https://www.miltek.co.in/">Miltek-Notes</a>
   </div><br>
 </body>
-<div style="float:right">
+<div style="float:left">
   <select id="selecttopic" class="js-example-basic-single" onChange="window.location.href=this.value"> 
     <option selected disabled="true">--Select Topic--</option>
     {% for x in tags %}
@@ -75,14 +76,14 @@
     {% endfor %}
   </select>
 </div>
+<div>
 <center>
 <script>
     var string = "{{ tags|escapejs}}";
     string = string.replace(/'/g, '"');
     var words = JSON.parse(string);
-    console.log(words.url);
   
-    var width = 1150;
+    var width = 964;
     var height = 650;
  
     var color = d3.scale.linear()
@@ -91,7 +92,7 @@
 
     d3.layout.cloud().size([width, height])
         .words(words)
-        .padding(5)
+        .padding(6)
         .rotate(function() { return ~~(Math.random() * 2) * 90; })
         .font("Impact")
         .fontSize(function(d) { return d.size; })
@@ -106,7 +107,7 @@
                 .append("g")
                 // without the transform, words words would get cutoff to the left and top, they would
                 // appear outside of the SVG area
-                .attr("transform", "translate("+ width/2 +","+ height/2 +")")
+                .attr("transform", "translate("+ width/1.9 +","+ height/1.9 +")")
                 .selectAll("text")
                 .data(words)
                 .enter().append("text")
@@ -123,12 +124,12 @@
     }
 </script>
 </center>
+</div>
 <script>
     $(document).ready(function() {
     $('.js-example-basic-single').select2();
 }); 
 </script>
-</div>
 
 
   <hr/>
