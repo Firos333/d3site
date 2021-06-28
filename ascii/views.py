@@ -17,7 +17,7 @@ def index(request):
     with open('HTML_pages.txt') as f:
         link_list = f.readlines()
     link_list = [x.strip() for x in link_list] 
-
+    print(link_list)
     size,length2,length3,match2,match3,Heading2, Heading3, headlink2, headlink3= ([] for i in range(9))
 
     for i in link_list:

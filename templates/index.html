@@ -66,25 +66,24 @@
     <a class="active" href="https://www.miltek.co.in/">Miltek-Notes</a>
   </div><br>
 </body>
-<div style="float:left">
+<div >
   <select id="selecttopic" class="js-example-basic-single" onChange="window.location.href=this.value"> 
     <option selected disabled="true">--Select Topic--</option>
     {% for x in tags %}
 
-    <option value='{{x.url}}'> {{x.text}} </a> </option>
+    <option value='{{x.url}}'> {{x.text}} </option>
     
     {% endfor %}
   </select>
 </div>
 <div>
-<center>
 <script>
     var string = "{{ tags|escapejs}}";
     string = string.replace(/'/g, '"');
     var words = JSON.parse(string);
   
-    var width = 964;
-    var height = 650;
+    var width = window.innerWidth;
+    var height = 500;
  
     var color = d3.scale.linear()
             .domain([0,1,2,3,4,5,6,10,15,20,100])
@@ -123,7 +122,6 @@
 
     }
 </script>
-</center>
 </div>
 <script>
     $(document).ready(function() {
