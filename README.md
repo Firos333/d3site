@@ -4,7 +4,7 @@ made with d3.js chart and web scrapping through Beautiful soup
 ![](https://img.shields.io/badge/Beautiful%20Soup-Word%20Cloud-yellowgreen)
 ![](https://img.shields.io/badge/D3.js-Word%20Cloud-green)
 ![](https://img.shields.io/badge/AsciiDoc-Documentation-red)
-
+![](https://img.shields.io/badge/Django-Website-blue)
 
 
 Description:  <br />
@@ -13,7 +13,7 @@ And convert to a Word Cloud which indicates the intensity of Content. And a Jque
 
 
 KeyWords:
-
+#Django  <br />
 #D3.js  <br />
 #Ascci docs  <br />
 #Beautiful soup <br />
